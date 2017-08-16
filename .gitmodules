@@ -1,0 +1,3 @@
+[submodule "RedmineAPI"]
+	path = RedmineAPI
+	url = https://github.com/nathanbowness/RedmineAPI.git
