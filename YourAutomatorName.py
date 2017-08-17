@@ -64,7 +64,7 @@ class Automate(object):
         self.access_redmine.log_new_issue(issue)
 
         try:
-            issue.redmine_msg = "Beginning run of - %s" % issue.subject
+            issue.redmine_msg = "Beginning the process for: %s" % issue.subject
             self.access_redmine.update_status_inprogress(issue, self.botmsg)
             ##########################################################################################
             print("Implement your process right here")
@@ -88,7 +88,7 @@ class Automate(object):
         :param missing_files: All files that were not correctly uploaded
         """
         # Assign issue back to the author
-        self.timelog.time_print("The request to run: %s has been completed." % issue.status)
+        self.timelog.time_print("The request to run: %s has been completed." % issue.subject)
         self.timelog.time_print("Assigning the issue back to the author.")
 
         issue.redmine_msg = "your finishing message back to the author"
