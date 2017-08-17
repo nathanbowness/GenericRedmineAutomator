@@ -15,7 +15,7 @@ class Automate(object):
         # Key: used to index the value to the config file for setup
         # Value: 3 Item Tuple ("default value", ask user" - i.e. True/False, "type of value" - i.e. str, int....)
         # A value of None is the default for all parts except for "Ask" which is True
-        custom_terms = {CustomKeys.key_name: (CustomValues.value_name, True, str)}  # *** can be more than 1 ****
+        custom_terms = {CustomKeys.key_name: (CustomValues.value_name, True, str)}  # *** can be more than 1 ***
 
         # Create a RedmineAPI setup object to create/read/write to the config file and get default arguments
         setup = Setup(time_log=self.timelog, custom_terms=custom_terms)
@@ -23,6 +23,7 @@ class Automate(object):
 
         # Custom terms saved to the config after getting user input
         self.custom_values = setup.get_custom_term_values()
+        # *** can be multiple custom values variable, just use the key from above to reference the inputted value ***
         self.your_custom_value_name = self.custom_values[CustomKeys.key_name]
 
         # Default terms saved to the config after getting user input
@@ -35,7 +36,7 @@ class Automate(object):
 
         self.botmsg = '\n\n_I am a bot. This action was performed automatically._'  # sets bot message
         # Subject name and Status to be searched on Redmine
-        self.issue_title = 'Your Title'
+        self.issue_title = 'your title'  # must be a lower case string to validate properly
         self.issue_status = 'New'
 
     def timed_retrieve(self):
@@ -66,7 +67,7 @@ class Automate(object):
             issue.redmine_msg = "Beginning run of - %s" % issue.subject
             self.access_redmine.update_status_inprogress(issue, self.botmsg)
             ##########################################################################################
-            print("Run your process right here")
+            print("Implement your process right here")
             ##########################################################################################
             self.completed_response(issue)
 
