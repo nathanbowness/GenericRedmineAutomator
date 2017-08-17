@@ -26,6 +26,8 @@ All changes needed are in the "YourAutomatorName.py" class that you will rename.
 - The "YourAutomatorName_Run.py" should be replaced with your project name
 - The "YourAutomatorName.py" should be replaced as well
 
+<br />
+
 2. Set Custom Terms for Automator -- '__init__(self, force)'
 
 - Change the custom_terms 'key value-tuple' dictionary, used to ask the user for custom inputs and log them to the config 
@@ -41,6 +43,7 @@ to use your custom terms in the code, a local variable can be set by:
     # *** can be multiple custom values variable, just use the key from above to reference the inputted value ***
     self.your_custom_value_name = self.custom_values["your_key"] 
 ```
+<br />
 
 3. Set Topic & Status -- '__init__(self, force)'
 - Set the issue_title variable to be the desired Subject. This will filter all issues by Subject and activate the 
@@ -53,6 +56,8 @@ default)
 ```
 **Both of these must be satisfied for the automation task to run on an issue
 
+<br />
+
 4. Implement Code to run your Automation Process -- 'respond_to_issue(self, issue)'
 - Inside the outlined area show below, implement your code to run the desired task. This task will run on every issue
 with the specified Subject and Status
@@ -63,6 +68,8 @@ with the specified Subject and Status
 ##########################################################################################
     self.completed_response(issue)
 ```
+
+<br />
 
 5. Change the Completed Response Message -- 'completed_response(self, issue)'
 - Once the process has been completed, the author will have the issue assigned back to them with a message. 
