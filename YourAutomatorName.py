@@ -73,7 +73,7 @@ class Automate(object):
 
         except Exception as e:
             import traceback
-            self.timelog.time_print("[Warning] run.py had a problem, continuing redmine api anyways.")
+            self.timelog.time_print("[Warning] The automation process had a problem, continuing redmine api anyways.")
             self.timelog.time_print("[Automation Error Dump]\n" + traceback.format_exc())
             # Send response
             issue.redmine_msg = "There was a problem with your request. Please create a new issue on" \
@@ -85,14 +85,15 @@ class Automate(object):
         """
         Update the issue back to the author once the process has finished
         :param issue: Specified Redmine issue the process has been completed on
-        :param missing_files: All files that were not correctly uploaded
         """
-        # Assign issue back to the author
-        self.timelog.time_print("The request to run: %s has been completed." % issue.subject)
-        self.timelog.time_print("Assigning the issue back to the author.")
+        # Assign the issue back to the Author
+        self.timelog.time_print("Assigning the issue: %s back to the author." % str(issue.id))
 
         issue.redmine_msg = "your finishing message back to the author"
-
+        # Update author on Redmine
         self.access_redmine.update_issue_to_author(issue, self.botmsg)
+
+        # Log the completion of the issue including the message sent to the author
+        self.timelog.time_print("\nMessage to author - %s\n" % issue.redmine_msg)
         self.timelog.time_print("Completed Response to issue %s." % str(issue.id))
         self.timelog.time_print("The next request will be processed once available")
